@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  min-height: 55vw;
+  min-width: 70vw;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  width: 10px;
+  background: blue;
+  margin: 0 1px;
+  display: inline-block;
+}
