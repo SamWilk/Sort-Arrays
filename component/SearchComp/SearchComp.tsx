@@ -12,7 +12,7 @@ const SearchComp = () => {
 
   function resetArr() {
     const arr = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 300; i++) {
       arr.push(randomNumber(5, 500));
     }
     setArr(arr);
@@ -39,24 +39,73 @@ const SearchComp = () => {
 
       setTimeout(() => {
         const position1 = document.getElementById(`${n}`);
-        position1!.style.background = "black";
+        // position1!.style.background = "black";
         const position2 = document.getElementById(`${k}`);
-        position2!.style.background = "black";
+        // position2!.style.background = "black";
         console.log(position1 + " | " + position2);
         setTimeout(() => {
-          position1!.style.background = "blue";
-          position2!.style.background = "blue";
+          // position1!.style.background = "blue";
+          // position2!.style.background = "blue";
           console.log(position1!.style.height);
           var temp = position1!.style.height;
           position1!.style.height = position2!.style.height;
           position2!.style.height = temp;
-        }, i * 1 + 1000);
-      }, i * 1 + 1000);
+        }, i * 1);
+      }, i * 1);
     }
-    console.log(finalArray);
+    // console.log(finalArray);
   }
 
-  console.log(arr);
+  function insert() {
+    const finalArray = sortingAlgo.insertionSort(arr, arr!.length);
+
+    for (let i = 0; i < finalArray.length; i++) {
+      const [n, k] = finalArray[i];
+
+      setTimeout(() => {
+        const position1 = document.getElementById(`${n}`);
+        // position1!.style.background = "black";
+        const position2 = document.getElementById(`${k}`);
+        // position2!.style.background = "black";
+        console.log(position1 + " | " + position2);
+        setTimeout(() => {
+          // position1!.style.background = "blue";
+          // position2!.style.background = "blue";
+          console.log(position1!.style.height);
+          var temp = position1!.style.height;
+          position1!.style.height = position2!.style.height;
+          position2!.style.height = temp;
+        }, i * 1);
+      }, i * 1);
+    }
+  }
+  function shell() {
+    const finalArray = sortingAlgo.shellSort(arr);
+
+    for (let i = 0; i < finalArray.length; i++) {
+      const [n, k] = finalArray[i];
+
+      setTimeout(() => {
+        const position1 = document.getElementById(`${n}`);
+        // position1!.style.background = "black";
+        const position2 = document.getElementById(`${k}`);
+        // position2!.style.background = "black";
+        console.log(position1 + " | " + position2);
+        setTimeout(() => {
+          // position1!.style.background = "blue";
+          // position2!.style.background = "blue";
+          console.log(position1!.style.height);
+          var temp = position1!.style.height;
+          position1!.style.height = position2!.style.height;
+          position2!.style.height = temp;
+        }, i * 1);
+      }, i * 1);
+    }
+  }
+
+  function quick() {}
+
+  // console.log(arr);
 
   return (
     <>
@@ -73,8 +122,13 @@ const SearchComp = () => {
             ))}
           </div>
           <button onClick={() => resetArr()}>Reset</button>
-          <button onClick={() => merging()}>MergeSort</button>
+          {/* <button onClick={() => merging()}>MergeSort</button> */}
           <button onClick={() => bubble()}>BubbleSort</button>
+          <button onClick={() => insert()}>InsertionSort</button>
+          {/* <button onClick={() => heap()}>HeapSort</button> */}
+          <button onClick={() => shell()}>ShellSort</button>
+          <button onClick={() => quick()}>QuickSort</button>
+          {/* Think about doing a shell sort and look into doing quick sort form java algo book and implement it here */}
         </div>
       </div>
     </>
