@@ -103,7 +103,10 @@ const SearchComp = () => {
     }
   }
 
-  function quick() {}
+  function quick() {
+    const finalArray = sortingAlgo.quickSort(arr);
+    console.log(finalArray);
+  }
 
   // console.log(arr);
 

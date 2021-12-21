@@ -1,3 +1,5 @@
+import { serveWebpackBrowser } from "@angular-devkit/build-angular/src/dev-server";
+
 export function mergeSort(arr: any): number[] {
   if (arr.length <= 1) {
     return arr;
@@ -81,33 +83,55 @@ export function shellSort(arr: any): number[][] {
   return ani;
 }
 
-//Quick Sort
-function partition(arr: any, start: any, end: any) {
-  const pivot = arr[end];
-  let idx = start;
-  for (let i = start; i < end; i++) {
-    if (arr[i] < pivot) {
-      // Swapping elements
-      [arr[i], arr[idx]] = [arr[idx], arr[i]];
-      // Moving to next element
-      idx++;
-    }
-  }
-
-  [arr[idx], arr[end]] = [arr[end], arr[idx]];
-  return idx;
+//Quick sort
+export function quickSort(arr: any) {
+  const length = arr.length;
+  const ani: any = [];
+  const val = quickIt(0, arr.length, arr, ani);
+  return val;
 }
 
-function quickSortRecursive(arr: any, start: any, end: any) {
-  // Base case or terminating case
-  if (start >= end) {
-    return;
+function swap(leftPtr: number, rightPtr: number, arr: number[], ani: any) {
+  let temp = arr[leftPtr];
+  arr[leftPtr] = arr[rightPtr];
+  arr[rightPtr] = temp;
+  ani.push([leftPtr, rightPtr]);
+}
+
+function partition(
+  left: number,
+  right: number,
+  pivot: number,
+  arr: number[],
+  ani: any
+): any {
+  let leftPtr = left - 1;
+  let rightPtr = right;
+
+  while (true) {
+    while (arr[++left] < pivot);
+
+    while (rightPtr > 0 && arr[--rightPtr] > pivot);
+
+    if (leftPtr >= rightPtr) {
+      break;
+    } else {
+      swap(leftPtr, rightPtr, arr, ani);
+    }
   }
+  swap(leftPtr, right, arr, ani);
+  return leftPtr;
+}
 
-  // Returns pivotIndex
-  let index = partition(arr, start, end);
+function quickIt(left: number, right: number, arr: number[], ani: any): any {
+  if (right - left <= 0) {
+    return;
+  } else {
+    let n = arr[right];
 
-  // Recursively apply the same logic to the left and right subarrays
-  quickSort(arr, start, index - 1);
-  quickSort(arr, index + 1, end);
+    let part = partition(left, right, n, arr, ani);
+    quickIt(left, part - 1, arr, ani);
+    quickIt(part + 1, right, arr, ani);
+    return arr;
+  }
 }
