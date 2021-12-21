@@ -41,7 +41,8 @@ export function bubblesort(arr: any): number[][] {
       }
     }
   }
-  // console.log(arr);
+  console.log(arr);
+
   return animations;
 }
 
@@ -59,6 +60,7 @@ export function insertionSort(arr: any, n: number): number[][] {
     }
     arr[j + 1] = key;
   }
+  console.log(arr);
 
   return animations;
 }
@@ -80,6 +82,7 @@ export function shellSort(arr: any): number[][] {
       arr[j] = temp;
     }
   }
+  console.log(arr);
   return ani;
 }
 
@@ -87,7 +90,9 @@ export function shellSort(arr: any): number[][] {
 export function quickSort(arr: any) {
   const length = arr.length;
   const ani: any = [];
-  const val = quickIt(0, arr.length, arr, ani);
+  const val = quickIt(0, arr.length - 1, arr, ani);
+  console.log(arr);
+
   return val;
 }
 
@@ -107,9 +112,9 @@ function partition(
 ): any {
   let leftPtr = left - 1;
   let rightPtr = right;
-
+  let idx = 0;
   while (true) {
-    while (arr[++left] < pivot);
+    while (arr[++leftPtr] < pivot);
 
     while (rightPtr > 0 && arr[--rightPtr] > pivot);
 
@@ -118,6 +123,7 @@ function partition(
     } else {
       swap(leftPtr, rightPtr, arr, ani);
     }
+    idx++;
   }
   swap(leftPtr, right, arr, ani);
   return leftPtr;
@@ -132,6 +138,6 @@ function quickIt(left: number, right: number, arr: number[], ani: any): any {
     let part = partition(left, right, n, arr, ani);
     quickIt(left, part - 1, arr, ani);
     quickIt(part + 1, right, arr, ani);
-    return arr;
+    return ani;
   }
 }
