@@ -14,8 +14,8 @@ const SearchComp = () => {
 
   function resetArr() {
     const arr = [];
-    for (let i = 0; i < 300; i++) {
-      arr.push(randomNumber(5, 800));
+    for (let i = 0; i < 200; i++) {
+      arr.push(randomNumber(5, 750));
     }
     setArr(arr);
   }
