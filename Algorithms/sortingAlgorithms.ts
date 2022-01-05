@@ -1,5 +1,3 @@
-import { serveWebpackBrowser } from "@angular-devkit/build-angular/src/dev-server";
-
 export function mergeSort(arr: any): number[] {
   if (arr.length <= 1) {
     return arr;
